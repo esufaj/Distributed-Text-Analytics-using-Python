@@ -39,7 +39,7 @@ for line in sys.stdin:
         
         # input.write( word[0].lower() + " "+ word[1].lower() + "\t1" + "\n")
 
-        print(words[i] +" "+ words[i + 1] + "\t1")
+        print(words[i].lower() +" "+ words[i + 1].lower() + "\t1")
 # input.close()
 
         # r'(\w+\'\w+|^[A-Za-z]*$)'

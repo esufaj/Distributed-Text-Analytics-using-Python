@@ -7,7 +7,7 @@ import sys,re
 
 
 # input = open("tester10.txt", 'w')
-inputFile = sys.stdin
+# inputFile = sys.stdin
 
 lines = sys.stdin.readlines()[1:]
 
@@ -28,7 +28,7 @@ for line in lines:
     # businessID.strip('\n')
     # dayCheck.strip('\n')
     # values.strip('\n')
-    print("%s, %s #%d" %(words[0], words[1], int(words[3])))
+    print("%s, %s#%d" %(words[0], words[1], int(words[3])))    
     # print(words)
     # input.write(str(words) + "\n")
     # token = word_tokenize(words)
