@@ -18,6 +18,7 @@ for line in sys.stdin:
     line = line.split(",")[0]
     line = re.sub(r'^\W+|\W+$','',line)
     words = re.split(r"\W+",line)
+    words = list(filter(None, words))
 #     words = words.strip().split()
     # token = word_tokenize(words)
 #     txtSet = []

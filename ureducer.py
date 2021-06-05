@@ -6,17 +6,16 @@ import sys, re
 previous = None
 sum = 0
 
-input = open("unigrams.txt", 'w')
+# input = open("unigrams.txt", 'w')
 for line in sys.stdin:
     key,value =  line.split( '\t' )
 
     if key != previous:
         if previous is not None:
-           input.write ( str( sum ) + '\t' + previous + '\n' )
+           print( previous + '\t' + str(sum) + '\n' )
         previous = key
         sum = 0
    
     sum = sum + int(value)
-
-input.write( str(sum) + '\t' + previous + '\n')
-input.close()
+print( previous + '\t' + str(sum) + '\n')
+# input.close()

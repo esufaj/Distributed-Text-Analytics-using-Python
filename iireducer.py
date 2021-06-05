@@ -5,7 +5,7 @@ import sys
 previous = None
 busIDS = []
 
-input = open("inverted-index.txt", 'w')
+# input = open("inverted-index.txt", 'w')
 
 for line in sys.stdin:
     key,value =  line.split( '\t' )
@@ -13,7 +13,7 @@ for line in sys.stdin:
 
     if key != previous:
         if previous is not None:
-            input.write(previous + " " + ", ".join(busIDS) + "\n\n")
+            print(previous + " " + ", ".join(busIDS) + "\n\n")
 
             busIDS.clear()
             busIDS.append(value)
@@ -22,4 +22,4 @@ for line in sys.stdin:
     if (key == previous and value not in busIDS):
         busIDS.append(value)
 
-input.close()
+# input.close()
