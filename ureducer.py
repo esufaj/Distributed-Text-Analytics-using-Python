@@ -1,21 +1,26 @@
-#!/usr/local/bin/python3
-
+#!/usr/bin/python
 import sys, re
 
-
+#previous is used to check the keys
 previous = None
+#sum is used to add the # of occurences of the current word
 sum = 0
 
-# input = open("unigrams.txt", 'w')
+#Reading in the data from the umapper.py output given in terminal
 for line in sys.stdin:
+    #creating a key and value pair by using \t as a seperator
+    #whereas key is the word and value corresponds to the initial value of 1
     key,value =  line.split( '\t' )
 
-    if key != previous:
+    #checks if the key word has been seen for the first time
+    #prints to the terminal 
+    if key != previous: 
         if previous is not None:
-           print( previous + '\t' + str(sum) + '\n' )
-        previous = key
+           print( str( sum ) + '\t' + previous + '\n' )
+        previous = key #setting previous to key to mark it as seen, therefore if seen again add the value to its current value
         sum = 0
-   
+    #adding the # of occurences of each word
     sum = sum + int(value)
-print( previous + '\t' + str(sum) + '\n')
-# input.close()
+
+#printing the # of occurences corresponding to each key
+print( str(sum) + '\t' + previous + '\n')
