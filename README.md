@@ -1,9 +1,30 @@
 # a2
+
 HOW TO RUN: 
+
 Conventional way: 
+
 PART A: for unigrams, bigrams and trigrams: python3 *mapper.py < yelp_tip.csv | sort | *reducer.py
 PART B: python3 checkinsmapper.py < yelp_checkins.csv | sort | checkinsreducer.py
 PART C: python3 iimapper.py < yelp_business.csv | sort | iireducer.py
+
+Using docker & Hadoop to run MapReduce:
+
+step 1: for easy adding into docker image folder) cd into your working directory
+
+step 2: running a docker image, creating a folder called app and adding the working directory to the created folder) docker run -it -v $PWD:/app eecsyorku/eecs4415
+
+step 3: creating a folder in Hadoop) hdfs dfs -ls /
+
+step 4: for adding files into Hadoop to run) hdfs dfs -put ./*mapper.py /.  *DO THIS FOR ANY FILES TRYING TO BE RUN IN HADOOP AS WELL AS INPUT FILES SUCH AS *reducer.py or inputs such as yelp_tip.csv etc...*
+
+step 5: for running MapReduce algos in Hadoop) hadoop jar /usr/hadoop-3.0.0/share/hadoop/tools/lib/hadoop-streaming-3.0.0.jar -mapper /app/*mapper.py  -reducer /app/*reducer.py -input /yelp_*.csv -output /output
+
+step 6: for getting output) hdfs dfs -get /output/part* .
+
+IF YOU NEED TO REMOVE OUTPUT USE: rm part-0000
+
+
 
 EECS4415Big Data Systems Summer 2021Assignment 2(20%): Distributed Text Analytics using PythonDue Date: 11:59 pmon Friday, Jun 4, 2021ObjectiveIn  this assignment,  you  will  be designing  and  implementing  MapReduce  algorithms  for performing distributed analytics on textual data.The dataset is a subset of Yelp1's was originally put together for the Yelp  Dataset  Challengeand contains  seven  CSV  files  including information  about  businesses  across  11 metropolitan areas in four countriesand can be accessed here (registration to Kaggle is required):Yelp dataset:https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6Yelp dataset(local copy): https://www.eecs.yorku.ca/course_archive/2020-21/S/4415/yelp-data.zipThe first set of the MapReduce  algorithms compute n-grams ofbusiness tips; the  secondset computes popularity of a business; the third set computes an inverted index of the business categories. These are important statistics and tools commonly used in computational linguistic and information retrieval tasks.Important Notes:•You must use the submitcommand to electronically submit your solution by the due date. •Your programs should be tested on thedocker image that we provided before being submitted. •All programs are to be written using Python 3and to get full marks, code must be documented.What to SubmitWhen you have completed the assignment, move or copy your python scripts and outputs in a directory (e.g., assignment2), and use the following command to electronically submit your files:% submit4415 a2umapper.py ureducer.py unigrams.txt bmapper.py breducer.py bigrams.txt tmapper.py treducer.py trigrams.txt frequency-computation.txt checkinsmapper.py checkinsreducer.py checkinsbyday.txtiimaper.py iireducer.py inverted-index.txt team.txtThe team.txtfile  includes  information  about  the  team  members  (first  name,  last  name,  student  ID, login,  yorku  email). You  can  also  submit  the  files  individually  after  you  complete  each  part  of  the assignment–simply execute the submitcommand and give the filename that you wish to submit. Make sure you name your files exactlyas stated. You may check the status of your submission as following:% submit -l 4415a21Yelp. http://www.yelp.com
 
